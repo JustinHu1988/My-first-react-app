@@ -13,27 +13,39 @@ function Square(props) {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return (<Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)}/>);
+    return (<Square value={this.props.squares[i]} key={i} onClick={() => this.props.onClick(i)}/>);
   }
-  
+
   render() {
+    let renderItem = ()=>{
+      let keyCount1 =0;
+      let renderList = ()=>{
+        let list = [];
+        for(let i=0; i<3; i++){
+            list.push(this.renderSquare(keyCount1));
+            keyCount1++;
+          }
+          return list;
+      }
+      let BoardList = ()=>{
+        let list = [];
+        for(let i=0; i<3; i++){
+            list.push(
+            <div className="board-row" key={i}>
+              {renderList()}
+            </div>
+            );
+          }
+          return list;
+      }
+      return (
+          BoardList()
+      )
+    }
+    
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {renderItem()}
       </div>
     );
   }
@@ -75,7 +87,7 @@ class Game extends React.Component {
   jumpTo(step){
     this.setState({
       stepNumber: step,
-      xIsNext: !this.state.xIsNext
+      xIsNext: step %2 ? false : true
     });
   }
 
