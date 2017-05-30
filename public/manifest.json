@@ -1,11 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "My Gobang App",
+  "name": "This is my first App using react",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "Gobang.jpg",
+      "sizes": "1024x1024",
+      "type": "image/jpg"
     }
   ],
   "start_url": "./index.html",

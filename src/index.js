@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import blackPiece from './images/black-piece.png';
+import whitePiece from './images/white-piece.png';
 
 
-function Square(props) {
+function Cell(props) {
     return (
-      <button className="square" onClick={props.onClick}>
+      <li className="cell" onClick={props.onClick}>
         {props.value}
-      </button>
+      </li>
     );
 }
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return (<Square value={this.props.squares[i]} key={i} onClick={() => this.props.onClick(i)}/>);
+class GoBoard extends React.Component {
+  renderCell(i) {
+    return (<Cell value={this.props.squares[i]} key={i} onClick={() => this.props.onClick(i)}/>);
   }
 
   render() {
@@ -21,19 +23,19 @@ class Board extends React.Component {
       let keyCount1 =0;
       let renderList = ()=>{
         let list = [];
-        for(let i=0; i<3; i++){
-            list.push(this.renderSquare(keyCount1));
+        for(let i=0; i<15; i++){
+            list.push(this.renderCell(keyCount1));
             keyCount1++;
           }
           return list;
       }
       let BoardList = ()=>{
         let list = [];
-        for(let i=0; i<3; i++){
+        for(let i=0; i<15; i++){
             list.push(
-            <div className="board-row" key={i}>
+            <ul className="board-row" key={i}>
               {renderList()}
-            </div>
+            </ul>
             );
           }
           return list;
@@ -52,7 +54,6 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
-
   constructor(){
     super();
     this.state = {
@@ -74,7 +75,7 @@ class Game extends React.Component {
       return;
     }
     const squares = current.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? <img src={blackPiece} alt="black" /> : <img src={whitePiece} alt="black"/>;
     let numOrder = this.state.numOrder.slice(0, this.state.stepNumber + 1);
     this.setState({
       history: history.concat([{squares:squares}]),
@@ -83,6 +84,7 @@ class Game extends React.Component {
       numOrder: numOrder.concat([num[i]])
     });
   }
+
 
   jumpTo(step){
     this.setState({
@@ -101,7 +103,7 @@ class Game extends React.Component {
       const desc = move ? 'Move #(' + this.state.numOrder[move-1] + ')'  : 'Game start';
       return(
         <li key={move}>
-          <a href="#" onClick={() => this.jumpTo(move)}>{desc}</a>
+          <a href="#0" onClick={() => this.jumpTo(move)}>{desc}</a>
         </li>
       );
     });
@@ -114,9 +116,9 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board squares={current.squares} onClick={(i) => this.handleClick(i)}/>
+      <div className="gobang-game">
+        <div className="gobang-board">
+          <GoBoard squares={current.squares} onClick={(i) => this.handleClick(i)}/>
         </div>
         <div className="game-info">
           <div>{status}</div>
