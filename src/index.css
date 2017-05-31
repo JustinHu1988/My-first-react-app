@@ -1,19 +1,70 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  font: 14px "Century Gothic", Futura, "Microsoft Yahei", sans-serif;
+  margin: 0;
+  background: #000;
 }
 
 ol, ul {
   margin:0;
   padding:0;
 }
-
-.board-row:after {
+canvas{
+  position: fixed;
+  z-index:1;
+}
+.play-his{
+  width:120px;
+  background:#ddd;
+  padding-left: 30px;
+  height:615px;
+  overflow: auto;
+  position: absolute;
+  right:10px;
+  top:40px;
+}
+.play-his h3{
+  line-height: 30px;
+  padding: 0;
+  color:#fff;
+  margin: 0 0 0 -30px;
+  background: #666;
+  text-align: center;
+}
+.play-his li{
+  text-indent: 5px;
+  color:#666;
+}
+.play-his li a{
+  color:#666;
+  font-size: 15px;
+  text-decoration: none;
+}
+.play-order{
+  width:200px;
+  height:30px;
+  position: absolute;
+  left:220px;
+  top:8px;
+  text-align: center;
+  z-index:10;
+  font-size: 24px;
+  line-height: 30px;
+  background: #ddd;
+  border-radius: 10px;
+}
+.go-row:after {
   clear: both;
   content: "";
   display: table;
 }
-
+.time-count{
+  position: absolute;
+  right:10px;
+  top:10px;
+  width:200px;
+  height:40px;
+  font-size: 15px;
+}
 .status {
   margin-bottom: 10px;
 }
@@ -29,8 +80,7 @@ ol, ul {
   line-height: 34px;
   width: 41px;
   height: 41px;
-  margin-right: -1px;
-  margin-top: -1px;
+
   padding: 0;
   text-align: center;
 }
@@ -44,19 +94,43 @@ ol, ul {
 }
 
 .gobang-game {
-  width:100%;
-  height: 100%;
+  width:800px;
+  height:700px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  margin-left: -400px;
+  margin-top: -350px;
+  background: #fff;
+  border-radius: 20px;
+  z-index:10;
 }
 .gobang-board{
   width:615px;
   height: 615px;
   position: absolute;
-  left: 50%;
-  top:50%;
-  margin-left:-360px;
-  margin-top: -288px; 
-}
+  left: 10px;
+  top:40px;
 
+}
 .game-info {
   margin-left: 20px;
+}
+.description{
+  position: absolute;
+  bottom:12px;
+  left:0px;
+  width:800px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (max-height: 700px){
+  .gobang-game {
+
+    top:0;
+margin-top: 0;
+
+  }
 }
