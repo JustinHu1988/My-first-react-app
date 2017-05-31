@@ -42,7 +42,7 @@ class GoBoard extends React.Component {
   }
 
   render() {
-    let renderItem = ()=>{
+    let renderItem=()=>{
       let keyCount1 =0;
       let renderList = ()=>{
         let list = [];
