@@ -6,7 +6,7 @@ import whitePiece from './images/white-piece.png';
 
 
 function Cell(props) {
-    return (
+    return(
       <li className="cell" onClick={props.onClick}>
         {props.value}
       </li>
